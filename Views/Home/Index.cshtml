@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "My Index Page";
+}
+
+<body>
+    <div class="container">
+
+        <div class="card-deck">
+            @foreach (var employee in Model)
+            {
+                <div class="card m-3">
+                    <div class="card-header">
+                        <h1>@employee.Name</h1>
+                    </div>
+
+                    <img class="card-img-top" src="~/images/myface.jpg" style="width:300px;height:200px" />
+                    <div class="card-footer text-center">
+
+                        <a href="@Url.Action("details", "home", new { id = employee.Id})"
+                           class="btn btn-secondary">View2</a>
+                        @Html.ActionLink("View", "details", "home", new { id = employee.Id})
+                                <a href="/home/details/@employee.Id" class="btn btn-primary">View11</a>
+
+
+                        <a asp-controller="home" asp-action="details" asp-route-id="@employee.Id"
+                           class="btn btn-primary m-1">View3</a>
+                        <a href="#" class="btn btn-primary m-1">Edit</a>
+                        <a href="#" class="btn btn-danger m-1">Delete</a>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+</body>
